@@ -13,3 +13,5 @@ app.get("/josue", (req, res) =>{
 app.listen(port, () =>{
   console.log("My port: " + port);
 });
+
+//Practica creación servidor con Express
