@@ -24,6 +24,18 @@ app.get('/categories/:categoryId',(req,res)=>{
     }
   ])
 })
+//recibiendo 2 parametros
+app.get('/categories/:categoryId/products/:productId',(req,res)=>{
+  const {categoryId, productId}= req.params
+  res.json([
+    {
+      categoryId,
+      productId,
+      category: 'Food',
+      products: []
+    }
+  ])
+})
 
 app.get('/categories',(req,res)=>{
   const {categoryId}= req.params
