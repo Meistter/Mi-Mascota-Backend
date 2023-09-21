@@ -14,4 +14,37 @@ app.listen(port, () =>{
   console.log("My port: " + port);
 });
 
+app.get('/categories/:categoryId',(req,res)=>{
+  const {categoryId}= req.params
+  res.json([
+    {
+      categoryId,
+      category: 'Food',
+      products: []
+    }
+  ])
+})
+
+app.get('/categories',(req,res)=>{
+  const {categoryId}= req.params
+  res.json([
+    {
+      categoryId,
+      category: 'Food',
+      products: ['hola']
+    },
+    {
+      categoryId,
+      category: 'Games',
+      products: []
+    },
+    {
+      categoryId,
+      category: 'clothes',
+      products: []
+    },
+  ])
+})
+
+
 //Practica creación servidor con Express
