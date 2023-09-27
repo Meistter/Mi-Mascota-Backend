@@ -2,16 +2,17 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const routerApi = require('./routes/index')
-
+app.use(express.json())
+// Este Middleware es el que nos permite capturar la información que recibimos
 routerApi(app)
 
 app.get("/", (req, res) =>{
   res.send("Hola mi server en Express");
 });
 
-app.get("/josue", (req, res) =>{
-    res.json({name: 'Josue', apellido: 'Perez'});
-  });
+// app.get("/josue", (req, res) =>{
+//     res.json({name: 'Josue', apellido: 'Perez'});
+//   });
 
 app.listen(port, () =>{
   console.log("My port: " + port);
