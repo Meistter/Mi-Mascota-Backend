@@ -1,9 +1,12 @@
 const productsRouter = require('./products.router')
+const express = require('express')
 function routerApi(app) {
- app.use('/products', productsRouter)
+    const router = express.Router()
+app.use('/api/v1',router)
+ router.use('/products', productsRouter)
 
 }
-
+// ? Vamos a crear una ruta maestra para poder poner versiones a nuestra API, de esta forma ciertas rutas seran de una version y otras de otra
 module.exports = routerApi
 
 
