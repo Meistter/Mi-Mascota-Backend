@@ -40,7 +40,7 @@ router.delete('/:id',(req,res)=>{
   const { id } = req.params
   const body= req.body  
   res.json({
-    message: 'delete',
+    message: 'Eliminar',
     id
   })
 })
