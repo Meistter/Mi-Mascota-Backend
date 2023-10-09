@@ -53,9 +53,9 @@ class ProductService {
     delete(id) {
         const index = this.products.findIndex(item => item.id === id)
         if (index === -1) {
-            throw new Error('product not found')
+            throw new Error('product not found') //lanzamos el error
         } else {
-            this.products.splice(index, 1)
+            this.products.splice(index, 1) //eliminamos un elemento luego del indice dado
             return { message: true, id: id }
         }
     }
