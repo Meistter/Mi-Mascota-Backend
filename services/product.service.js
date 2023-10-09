@@ -3,7 +3,7 @@ class ProductService {
 
     constructor() {
         this.products = []
-        this.generate()
+        this.generate() //generamos elementos al iniciar el servicio
     }
     generate() {
         const limit = 100
