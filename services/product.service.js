@@ -1,4 +1,5 @@
 const { faker } = require('@faker-js/faker')
+const boom = require('@hapi/boom')
 class ProductService {
 
     constructor() {
@@ -27,21 +28,27 @@ class ProductService {
     }
 
     async find() {
-        return new Promise((resolve, reject)=>{
-            setTimeout(()=>{
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
                 resolve(this.products)
-            },5000)
+            }, 5000)
         })
     }
 
     async findOne(id) {
-        return this.products.find(item => item.id === id)
+        const product = this.products.find(item => item.id === id)
+        if (!product) {
+            throw boom.notFound('product not found')
+        } else {
+            return this.product
+        }
     }
 
     async update(id, changes) {
         const index = this.products.findIndex(item => item.id === id)
         if (index === -1) {
-            throw new Error('product not found')
+            throw boom.notFound('product not found')
+            //El uso de el boom en este caso nos permite definir errores de forma mas natural y la libreria se encarga de mostrar el codigo correspondiente al error al cliente
         } else {
             const product = this.products[index]
 
@@ -57,7 +64,7 @@ class ProductService {
     async delete(id) {
         const index = this.products.findIndex(item => item.id === id)
         if (index === -1) {
-            throw new Error('product not found') //lanzamos el error
+            throw boom.notFound('product not found') //lanzamos el error
         } else {
             this.products.splice(index, 1) //eliminamos un elemento luego del indice dado
             return { message: true, id: id }
