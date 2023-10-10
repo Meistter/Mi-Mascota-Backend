@@ -27,9 +27,11 @@ router.patch('/:id', async (req, res) => { //Aqui estamos definiendo la arrow fu
   }
   
 })
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
+  try {
   const { id } = req.params
   const product = await service.findOne(id)
+  // const hola = hola() //Este es un error provocado para probar
   if(product)
   {
     res.json(product)
@@ -37,6 +39,9 @@ router.get('/:id', async (req, res) => {
     res.status(404).json({
     message: 'No encontrado'
     })
+  }
+  } catch (error) {
+    next(error) //!Al llamar esto le decimos que vaya a ejecutar los middlewares de tipo error que iniciamos en el index.js para manejar los errores
   }
 })
 
