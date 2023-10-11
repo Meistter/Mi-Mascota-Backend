@@ -1,5 +1,4 @@
 function logErrors(error, req, res, next) {
-    console.error(error);
     next(error) //estamos enviandolo a un middleware de tipo error (al siguiente en el orden en que definimos en el index.js) ya que le enviamos un error
 }
 function errorHandler(error, req, res, next) { //los 4 parametros siempre van asi no usemos el next
@@ -17,7 +16,6 @@ function errorHandler(error, req, res, next) { //los 4 parametros siempre van as
 
 function boomErrorHandler(error, req, res, next) {
     if (error.isBoom) {
-        console.log('soy un error boom');
         const { output } = error
         res.status(output.statusCode).json(output.payload)
     }else {       

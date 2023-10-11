@@ -13,7 +13,8 @@ class ProductService {
                 id: faker.string.uuid(),
                 name: faker.commerce.productName(),
                 price: parseInt(faker.commerce.price(), 10),
-                image: faker.image.url()
+                image: faker.image.url(),
+                isBlock: faker.datatype.boolean()
             })
         }
     }
@@ -31,7 +32,7 @@ class ProductService {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(this.products)
-            }, 5000)
+            }, 1500)
         })
     }
 
@@ -39,10 +40,11 @@ class ProductService {
         const product = this.products.find(item => item.id === id)
         if (!product) {
             throw boom.notFound('product not found')
-        } else {
-            return this.product
+        } if (product.isBlock) {
+            throw boom.conflict('product locked')
         }
-    }
+        return this.product
+    }   
 
     async update(id, changes) {
         const index = this.products.findIndex(item => item.id === id)
