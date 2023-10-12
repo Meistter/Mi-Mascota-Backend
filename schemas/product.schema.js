@@ -20,4 +20,4 @@ const updateProductSchema = Joi.object({
     price: price
 })
 
-GitModule.exports = { createProductSchema, updateProductSchema, getProductSchema}
+module.exports = { createProductSchema, updateProductSchema, getProductSchema}

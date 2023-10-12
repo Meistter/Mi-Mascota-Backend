@@ -12,7 +12,7 @@ app.use(express.json())
 routerApi(app)
 
 //!Inicializamos los middlewares para luego usarlos en los meotdos para capturar errores y procesarlos 
-app.use(validatorHandler)
+// app.use(validatorHandler)
 app.use(logErrors)
 app.use(boomErrorHandler)
 app.use(errorHandler)
