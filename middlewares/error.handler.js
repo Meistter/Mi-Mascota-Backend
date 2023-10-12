@@ -1,4 +1,5 @@
 function logErrors(error, req, res, next) {
+    console.log(error)
     next(error) //estamos enviandolo a un middleware de tipo error (al siguiente en el orden en que definimos en el index.js) ya que le enviamos un error
 }
 function errorHandler(error, req, res, next) { //los 4 parametros siempre van asi no usemos el next
